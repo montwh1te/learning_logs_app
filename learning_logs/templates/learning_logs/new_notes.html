@@ -1,0 +1,15 @@
+{% extends "learning_logs/base.html" %}
+
+{% block title %}Novas notas{% endblock title %}
+    
+{% block content %}
+    <p><a href="{% url 'topic' topic.id %}">{{topic}}</a></p>
+    <p>Adicione uma nova nota ao seu tópico</p>
+    <form action="{% url 'new_notes' topic.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Adicionar</button>
+    </form>
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}

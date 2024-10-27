@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Nome Página{% endblock title %}</title>
+</head>
+<body>
+    <header>
+        <a href="{% url 'index' %}">Learning Log</a> - <a href="{% url 'topics' %}">Tópicos</a>
+    </header>
+
+    <main>
+        {% block content %}{% endblock content %}
+    </main>
+
+    <footer>
+        {% block footer %}{% endblock footer %}
+    </footer>
+</body>
+</html>
