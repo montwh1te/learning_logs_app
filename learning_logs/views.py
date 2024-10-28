@@ -71,6 +71,5 @@ def edit_notes(request, notes_id):
     context = {'note': note, 'topic': topic, 'form': form}
     return render(request, 'learning_logs/edit_notes.html', context)
             
-            
         
     
