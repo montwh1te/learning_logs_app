@@ -7,7 +7,12 @@
 </head>
 <body>
     <header>
-        <a href="{% url 'index' %}">Learning Log</a> - <a href="{% url 'topics' %}">Tópicos</a>
+        <p><a href="{% url 'index' %}">Learning Log</a> - <a href="{% url 'topics' %}">Tópicos</a></p>
+        {% if user.is_authenticated %}
+            Olá, {{ user.username }}!
+        {% else %}
+            <a href="{% url 'login' %}">Entrar</a>
+        {% endif %}
     </header>
 
     <main>
