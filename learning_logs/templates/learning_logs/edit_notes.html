@@ -1,0 +1,15 @@
+{% extends "learning_logs/base.html" %}
+
+{% block title %}Editor de nota{% endblock title %}
+    
+{% block content %}
+    <p><a href="{% url 'topic' topic.id %}">{{topic}}</a></p>
+    <p>Editar anotação:</p>
+    <form action="{% url 'edit_notes' note.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Salvar</button>
+    </form>
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}

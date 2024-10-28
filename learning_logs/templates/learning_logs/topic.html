@@ -6,7 +6,10 @@
     <p>Notas do tópico: {{topic}}</p>
     <ul>
         {% for note in entries %}
-            <li>{{note.text | linebreaks}} -> {{note.date_added | date:'M d, Y H:i'}}</li>
+            <li><p>{{note.text | linebreaks}}</p>
+                <p>{{note.date_added | date:'M d, Y H:i'}}</p>
+                <p><a href="{% url 'edit_notes' note.id %}">Editar anotação</a></p>
+            </li>
         {% empty %}
             <li>Não há notas adicionadas</li>
         {% endfor %}

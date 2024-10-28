@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Topic
+from .models import Topic, Notes
 from .forms import TopicForm, NotesForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -54,6 +54,22 @@ def new_notes(request, topic_id):
         
     context = {'topic': topic, 'form': form}
     return render(request, 'learning_logs/new_notes.html', context)
+
+def edit_notes(request, notes_id):
+    """ Edita uma nota existente """
+    note = Notes.objects.get(id = notes_id)
+    topic = note.note
+    
+    if request.method != 'POST':
+        form = NotesForm(instance = note) # colocar.text
+    else:
+        form = NotesForm(instance = note, data = request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('topic', args=[topic.id]))
+        
+    context = {'note': note, 'topic': topic, 'form': form}
+    return render(request, 'learning_logs/edit_notes.html', context)
             
             
         
