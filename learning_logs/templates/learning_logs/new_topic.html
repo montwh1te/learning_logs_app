@@ -1,13 +1,19 @@
 {% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
 
-{% block title %}Novo tópico{% endblock title %}
-    
+{% block title %}Novo Tópico{% endblock title %}
+
+{% block header %}
+    <h2>Adicione um novo tópico</h2>
+{% endblock header %}
+
 {% block content %}
-    <p>Adicione um novo tópico</p>
-    <form action="{% url 'new_topic' %}" method="post">
-        {% csrf_token %} <!-- tag de segurança -->
-        {{ form.as_p }} <!-- formatação -->
-        <button name="submit">Adicionar</button>
+    <form action="{% url 'new_topic' %}" method="post" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form%}
+        {% buttons %}
+            <button name="submit" class="btn btn-default btn-sm btn-primary">Adicionar</button>
+        {% endbuttons %}
     </form>
 {% endblock content %}
 

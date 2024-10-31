@@ -8,8 +8,10 @@ def logout_view(request):
     """ Faz um logout do usuário """
     logout(request)
     return HttpResponseRedirect(reverse('index'))
-
+    
 def register(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('index'))
     """ Faz o cadastro de um novo usuário """
     if request.method != 'POST':    
         # Exibe o formulário do cadastro em branco

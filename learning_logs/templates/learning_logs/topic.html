@@ -2,18 +2,28 @@
 
 {% block title %}Notas do tópico ... {% endblock title %}
     
+{% block header %}
+    <h2>Notas do tópico: {{topic}}</h2>
+{% endblock header %}
+
 {% block content %}
-    <p>Notas do tópico: {{topic}}</p>
-    <ul>
+   
         {% for note in entries %}
-            <li><p>{{note.text | linebreaks}}</p>
-                <p>{{note.date_added | date:'M d, Y H:i'}}</p>
-                <p><a href="{% url 'edit_notes' note.id %}">Editar anotação</a></p>
-            </li>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>
+                        {{note.date_added | date:'M d, Y H:i'}}
+                        <h5><a href="{% url 'edit_notes' note.id %}">Editar anotação</a></h5>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    {{note.text | linebreaks}}
+                </div>
+            </div>
         {% empty %}
-            <li>Não há notas adicionadas</li>
+            <p>Não há notas adicionadas</p>
         {% endfor %}
-    </ul>
+   
 
     <p><a href="{% url 'new_notes' topic.id %}">Adicione uma nova anotação</a></p>
 {% endblock content %}

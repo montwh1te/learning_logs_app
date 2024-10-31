@@ -1,14 +1,18 @@
 {% extends "learning_logs/base.html" %}
+{% load bootstrap3 %}
 
-{% block title %}Novas notas{% endblock title %}
+{% block title %}Nova Nota{% endblock title %}
     
+{% block header %}
+    <h1><a href="{% url 'topic' topic.id %}">{{topic}}</a></h1>
+{% endblock header %}
+
 {% block content %}
-    <p><a href="{% url 'topic' topic.id %}">{{topic}}</a></p>
-    <p>Adicione uma nova nota ao seu tópico</p>
-    <form action="{% url 'new_notes' topic.id %}" method="post">
+    <h3>Criar anotação:</h3>
+    <form action="{% url 'new_notes' topic.id %}" method="post" class="form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button name="submit">Adicionar</button>
+        {% bootstrap_form form %}
+        <button name="submit" class="btn btn-default btn-sm btn-primary">Adicionar</button>
     </form>
 {% endblock content %}
 

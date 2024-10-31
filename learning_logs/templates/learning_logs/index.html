@@ -2,10 +2,18 @@
 
 {% block title %}Página Principal{% endblock title %}
     
+{% block header %}
+    <div class="jumbotron">
+        <h1>Acompanhe seu aprendizado!</h1>
+    </div>
+{% endblock header %}
+
 {% block content %}
-    <p>Essa seção ajudará você a organizar os seus estudos</p>
+    {% if not user.is_authenticated %}
+        <h3><a href="{% url 'register' %}">Crie uma conta </a> para utilizar o Learning Log e liste os tópicos que você está aprendendo.</h3>
+    {% else %}
+        <h4>Sempre que você aprender algo novo sobre um tópico, crie uma anotação resumindo o que você aprendeu</h4>
+    {% endif %}
 {% endblock content %}
 
-{% block footer %}
-    <p>Nadaaaaa até então!</p>
-{% endblock footer %}
+{% block footer %}{% endblock footer %}

@@ -2,18 +2,19 @@
 
 {% block title %}Tópicos{% endblock title %}
     
+{% block header %}
+    <h1>Tópicos</h1>
+{% endblock header %}
+
 {% block content %}
-    <p>Tópicos</p>
-    <ul>
+    <ul class="list-group">
         {% for topic in topics %}
-            <li><a href="{% url 'topic' topic.id %}">{{topic}}</a></li>
+            <li class="list-group-item"><h3><a href="{% url 'topic' topic.id %}">{{topic}}</a></h3></li>
         {% empty %}
             <li>Não há tópicos adicionados</li>
         {% endfor %}
     </ul>
-    <a href="{% url 'new_topic' %}">Adicionar novos tópicos</a>
+    <h4><a href="{% url 'new_topic' %}">Adicionar novos tópicos</a></h4>
 {% endblock content %}
 
-{% block footer %}
-    <p>Nadaaaaa de footer TÓPICOS até então!</p>
-{% endblock footer %}
+{% block footer %}{% endblock footer %}
